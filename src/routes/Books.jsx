@@ -14,6 +14,7 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 
@@ -34,7 +35,7 @@ function Books() {
   // TODO: Replace axios with useAxios hook
 
   function getBooks() {
-    get("books");
+    get(`books`);
   }
 
   const searchHandler = (e) => {
@@ -63,6 +64,7 @@ function Books() {
             </TextField>
             {data
               .filter((book) =>
+                book.author.toLowerCase().includes(search.toLowerCase()) ||
                 book.name.toLowerCase().includes(search.toLowerCase()))
               .map((book) => (
                 <Card
@@ -78,6 +80,7 @@ function Books() {
                     sx={{ height: 250 }}
                     image={book.img || defaultImage}
                     title={book.name}
+                    component="img"
                   />
                   <Box sx={{ pt: 2, pl: 2 }}>
                     {book.genres.map((genre, i) => (
@@ -104,11 +107,12 @@ function Books() {
                   >
                     <Rating
                       name="read-only"
-                      value={Number(book.stars)}
+                      value={Number(book.stars) || 0}
                       readOnly
                       size="small"
                     />
-                    <Button size="small">Learn More</Button>
+                    <Button size="small" component={Link} to={`/${book.id}`}>Learn More</Button>
+
                   </CardActions>
                 </Card>
               ))}
