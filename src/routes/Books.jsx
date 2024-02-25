@@ -30,7 +30,6 @@ function Books() {
 
   // TODO: Replace axios with useAxios hook
 
-
   function getBooks() {
     get('books');
   }

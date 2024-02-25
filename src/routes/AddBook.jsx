@@ -57,8 +57,10 @@ function AddBook() {
 
   // postHandler function is used to handle the form submit event and post the book to the database.
 
-  function postHandler() {
+  function postHandler(event) {
     post('books', book);
+    event.preventDefault()
+
   }
 
   return (
