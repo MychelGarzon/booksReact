@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useAxios from '../services/useAxios';
+import defaultImage from "../assets/bookCover.jpg"
 import {
   Box,
   Card,
@@ -16,8 +17,10 @@ import {
 
 
 
+
 // function Books function component is used to display the books from the database.
 function Books() {
+
   const booksUrl = 'http://localhost:3000';
   const { data, loading, get } = useAxios(booksUrl);
   const [search, setSearch] = useState('');
@@ -31,7 +34,7 @@ function Books() {
   // TODO: Replace axios with useAxios hook
 
   function getBooks() {
-    get('books');
+    get("books");
   }
 
   const searchHandler = (e) => {
@@ -73,7 +76,7 @@ function Books() {
                 >
                   <CardMedia
                     sx={{ height: 250 }}
-                    image={book.img}
+                    image={book.img || defaultImage}
                     title={book.name}
                   />
                   <Box sx={{ pt: 2, pl: 2 }}>

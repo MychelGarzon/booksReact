@@ -25,6 +25,7 @@ function AddBook() {
     start: null,
     end: null,
     stars: null,
+    img: '',
   });
   // genreChangeHandler function is used to handle the genre change event.
 
